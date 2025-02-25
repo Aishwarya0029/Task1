@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Boxes Task</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #d0d0f3;
+        }
+        .box {
+            width: 150px;
+            height: 100px;
+            background-color: lightgray;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+        }
+        .box.expanded {
+            width: 250px;
+            height: 200px;
+        }
+        .options {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .box.expanded .options {
+            display: flex;
+        }
+        .btn-custom {
+            margin: 5px;
+            padding: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column align-items-center justify-content-center">
+    <div class="box text-center" onclick="toggleBox(this)">
+        Click Me
+        <div class="options">
+            <button class="btn btn-danger btn-custom" onclick="changeColor(event, this, 'red')">Red</button>
+            <button class="btn btn-primary btn-custom" onclick="changeColor(event, this, 'blue')">Blue</button>
+            <button class="btn btn-secondary btn-custom" onclick="changeSize(event, this, '300px', '250px')">Size</button>
+        </div>
+    </div>
+    <div class="box text-center" onclick="toggleBox(this)">
+        Click Me
+        <div class="options">
+            <button class="btn btn-success btn-custom" onclick="changeColor(event, this, 'green')">Green</button>
+            <button class="btn btn-warning btn-custom" onclick="changeColor(event, this, 'yellow')">Yellow</button>
+            <button class="btn btn-secondary btn-custom" onclick="changeSize(event, this, '350px', '300px')">Size</button>
+        </div>
+    </div>
+    <div class="box text-center" onclick="toggleBox(this)">
+        Click Me
+        <div class="options">
+            <button class="btn btn-purple btn-custom" style="background-color: purple; color: white;" onclick="changeColor(event, this, 'purple')">Purple</button>
+            <button class="btn btn-orange btn-custom" style="background-color: orange; color: white;" onclick="changeColor(event, this, 'orange')">Orange</button>
+            <button class="btn btn-secondary btn-custom" onclick="changeSize(event, this, '400px', '350px')"> Size</button>
+        </div>
+    </div>
+    
+    <script>
+        function toggleBox(box) {
+            box.classList.toggle("expanded");
+        }
+        function changeColor(event, btn, color) {
+            event.stopPropagation();
+            btn.closest(".box").style.backgroundColor = color;
+        }
+        function changeSize(event, btn, width, height) {
+            event.stopPropagation();
+            let box = btn.closest(".box");
+            box.style.width = width;
+            box.style.height = height;
+        }
+    </script>
+</body>
+</html>
